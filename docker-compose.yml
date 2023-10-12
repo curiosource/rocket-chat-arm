@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  rocketchat:
+    build: .
+    container_name: rocket-chat
+    environment:
+        - PORT=3000
+        - ROOT_URL=https://{fqdn}
+        - MONGO_URL=mongodb://{userid}:{password}@mongo:27017/{db}
+    ports:
+        - 3000:3000
+    volumes:
+       - ./data:/var/snap
+    entrypoint: "node /opt/Rocket.Chat/main.js"
+    tty: true
+    restart: always
+    networks:
+        - appnw
+        - infranwDB
+
+networks:
+  appnw:
+    external: true
+  infranwDB:
+    external: true
