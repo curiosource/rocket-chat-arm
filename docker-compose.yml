@@ -16,11 +16,4 @@ services:
     tty: true
     restart: always
     networks:
-        - appnw
-        - infranwDB
 
-networks:
-  appnw:
-    external: true
-  infranwDB:
-    external: true
